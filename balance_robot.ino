@@ -16,7 +16,7 @@ const int ENA = 13;
 const int IN1 = 18;
 const int IN2 = 19;
 
-// Right Motor
+ Right Motor
 const int ENB = 12;
 const int IN3 = 16;
 const int IN4 = 17;
@@ -70,10 +70,6 @@ int histIndex = 0;
 unsigned long lastSampleTime = 0;
 const int sampleIntervalMs = 30;
 
-// =====================================================
-//                    MPU6050 RAW I2C
-// =====================================================
-
 void mpuWrite(uint8_t reg, uint8_t val) {
   Wire.beginTransmission(MPU_ADDR);
   Wire.write(reg);
@@ -82,10 +78,10 @@ void mpuWrite(uint8_t reg, uint8_t val) {
 }
 
 void mpuInit() {
-  mpuWrite(0x6B, 0x00); // wake up
+  mpuWrite(0x6B, 0x00); 
   delay(100);
-  mpuWrite(0x1B, 0x00); // gyro +-250 deg/s
-  mpuWrite(0x1C, 0x00); // accel +-2g
+  mpuWrite(0x1B, 0x00);
+  mpuWrite(0x1C, 0x00); 
 }
 
 bool mpuReadRaw() {
@@ -121,9 +117,6 @@ void calibrateGyro() {
   angleOffset = accAngleSum / samples;
 }
 
-// =====================================================
-//                    MOTOR CONTROL
-// =====================================================
 
 void setMotor(int ena, int a, int b, int pwm, bool reverse) {
   pwm = constrain(pwm, 0, 255);
@@ -175,9 +168,6 @@ void driveFromPID(float value) {
   }
 }
 
-// =====================================================
-//                    SETTINGS SAVE/LOAD
-// =====================================================
 
 void saveSettings() {
   prefs.begin("pidcfg", false);
@@ -210,10 +200,6 @@ void loadSettings() {
   minPWM = prefs.getInt("minpwm", minPWM);
   prefs.end();
 }
-
-// =====================================================
-//                    WEB PAGE
-// =====================================================
 
 void handleRoot() {
 
@@ -390,10 +376,6 @@ loadCurrent();
   server.send(200, "text/html", page);
 }
 
-// =====================================================
-//                    WEB HANDLERS
-// =====================================================
-
 void handleStatus() {
   String json = "{\"angle\":" + String(filteredAngle, 2) +
                 ",\"output\":" + String(pidOutput, 1) +
@@ -456,12 +438,8 @@ void setupServer() {
   server.begin();
 }
 
-// =====================================================
-//                    SETUP / LOOP
-// =====================================================
-
 void setup() {
-  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0); // disable brownout detector
+  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0);
 
   Serial.begin(115200);
 
