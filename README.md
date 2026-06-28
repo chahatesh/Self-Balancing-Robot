@@ -6,27 +6,23 @@ This project is a great introduction to robotics, embedded systems, and control 
 
 ## Features
 
-- 🤖 ESP32-based controller
-- ⚖️ PID balancing algorithm
-- 📈 MPU-6500 IMU (compatible with MPU-6050/9250)
-- 🖨️ Fully 3D printable frame
-- 🔧 Easy to modify and customize
-- 📚 Great project for learning control systems
-
+- ESP32
+- PID controler
+- MPU-6500 IMU (you can use a MPU-6050/9250)
+- 3D printable frame
+- Easy to customize
 ---
 
-## Hardware
 
 ### Electronics
 
 - ESP32 Dev Board
 - L298N Motor Driver
-- MPU-6500 IMU
+- MPU-6500
   - MPU-6050 and MPU-9250 are also compatible
 - 2× DC Gear Motors
-- 2S LiPo Battery
+- 2S LiPo
 - Jumper Wires
-- Power Switch (optional)
 
 ---
 
@@ -47,10 +43,6 @@ Print:
 
 Upload the Arduino code to the ESP32 using the Arduino IDE.
 
-Required libraries include:
-- Wire
-- MPU6050 (or compatible MPU library)
-
 ---
 
 ## Assembly
@@ -59,7 +51,7 @@ Required libraries include:
 2. Assemble the chassis.
 3. Install the motors.
 4. Mount the ESP32, motor driver, and MPU.
-5. Wire everything together.
+5. Wire everything together (MPU -I2c and rest of conections are at top of code)
 6. Upload the code.
 7. Tune the PID values for your specific robot.
 
@@ -70,7 +62,6 @@ Required libraries include:
 Every robot is slightly different, so the PID values will likely need adjustment depending on:
 - Motor speed
 - Weight
-- Battery voltage
 - Wheel size
 - Center of gravity
 
@@ -80,7 +71,7 @@ Start with small values and gradually tune until the robot balances smoothly.
 
 ## License
 
-This project is licensed under the **CERN Open Hardware License v2** (or replace with your preferred license).
+Creative Commons Attribution-NonCommercial 4.0 International (Check licence)
 
 ---
 
